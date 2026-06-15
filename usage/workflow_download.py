@@ -1,9 +1,9 @@
 from jmcomic import *
 from jmcomic.cl import JmcomicUI
+from jmcomic import download_album, Feature
 
 # 下方填入你要下载的本子的id，一行一个，每行的首尾可以有空白字符
 jm_albums = '''
-350234
 
 
 '''
@@ -16,6 +16,13 @@ jm_photos = '''
 '''
 
 
+# 示例 1：指定输出目录和命名规则
+download_album('', option, extra=Feature.export_pdf(
+    # 下面是自定义参数
+    pdf_dir='D:/my_pdfs',          # PDF 保存到 D:/my_pdfs 文件夹
+    filename_rule='Atitle',        # 用本子标题作为文件名
+    delete_original_file=True,     # 合并完 PDF 后删除原图
+))
 def env(name, default, trim=('[]', '""', "''")):
     import os
     value = os.getenv(name, None)
